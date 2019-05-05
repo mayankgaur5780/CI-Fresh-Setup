@@ -1,1 +1,1 @@
-# CI-Fresh-Setup
+# Codeigniter3 Admin Setup
