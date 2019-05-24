@@ -28,6 +28,10 @@ class Profile extends Admin_Controller
         }
 
         try {
+            if (($response = validateFile('profile_image', config_item('allowed_image_mimes'))) !== true) {
+                exit($response);
+            }
+            
             $dataArr = array_from_post(['name', 'email', 'dial_code', 'mobile']);
 
             \Lib\DB::beginTransaction();
