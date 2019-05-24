@@ -14,8 +14,6 @@ MySQL - 10.0.38-MariaDB-0ubuntu0.16.04.1 : Database - ci_fresh_setup
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`ci_fresh_setup` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 
-USE `ci_fresh_setup`;
-
 /*Table structure for table `admin_roles` */
 
 DROP TABLE IF EXISTS `admin_roles`;
@@ -60,7 +58,7 @@ CREATE TABLE `admins` (
 /*Data for the table `admins` */
 
 insert  into `admins`(`id`,`role_id`,`name`,`profile_image`,`dial_code`,`mobile`,`email`,`password`,`hash`,`status`,`created_at`,`updated_at`) values 
-(1,1,'Admin','4bdf72add5c6013579cddcefab9226fd.png','91','01236547890','test@test.com','26f1a0e3ff9e6bf663bc452443b23a22eedd78fad3306540a11ee79f1d893bb537d8b6867c3b2af4ed2c6b56f37efdce8ca8a411e60ac7bc793fe774dc3be8be','f6fa704dbc0b4cebc02dd7fa3fb4eda2',1,'2019-04-13 14:56:06','2019-05-05 22:56:09');
+(1,1,'Admin','4bdf72add5c6013579cddcefab9226fd.png','91','01236547890','admin@demo.com','26f1a0e3ff9e6bf663bc452443b23a22eedd78fad3306540a11ee79f1d893bb537d8b6867c3b2af4ed2c6b56f37efdce8ca8a411e60ac7bc793fe774dc3be8be','f6fa704dbc0b4cebc02dd7fa3fb4eda2',1,'2019-04-13 14:56:06','2019-05-05 22:56:09');
 
 /*Table structure for table `navigations` */
 

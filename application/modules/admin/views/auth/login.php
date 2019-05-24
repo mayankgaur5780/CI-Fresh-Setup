@@ -39,7 +39,7 @@
 			<form id="login-form">
 				<p class="alert alert-block alert-danger message_box hide"></p>
 				<div class="form-group has-feedback">
-					<input type="email" class="form-control login_input" name="email" placeholder="<?= lang('email') ?>" value="mayankgaur5780@gmail.com">
+					<input type="email" class="form-control login_input" name="email" placeholder="<?= lang('email') ?>" value="admin@demo.com">
 					<span class="fa fa-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
