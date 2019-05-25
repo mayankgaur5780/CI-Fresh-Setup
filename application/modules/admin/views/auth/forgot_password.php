@@ -40,13 +40,9 @@
 					<input type="email" name="email" class="form-control" placeholder="<?= lang('email') ?>">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
-				<div class="row">
-					<div class="col-xs-12 col-md-7">
-						<a class="btn btn-link" href="<?php echo site_url('admin'); ?>"><?= lang('back_to_login') ?></a>
-					</div>
-					<div class="col-xs-12 col-md-5">
-						<button id="submitBtn" type="button" class="btn btn-primary btn-block btn-flat pull-right"><?= lang('reset_password') ?></button>
-					</div>
+				<div>
+					<a class="btn btn-link" href="<?php echo site_url('admin'); ?>"><?= lang('back_to_login') ?></a>
+					<button id="submitBtn" type="button" class="btn btn-primary btn-flat pull-right"><?= lang('reset_password') ?></button>
 				</div>
 			</form>
 		</div>
