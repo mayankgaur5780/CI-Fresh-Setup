@@ -469,3 +469,55 @@ if (!function_exists('show404')) {
         get_instance()->load->view('errors/html/custom404', true);
     }
 }
+
+if (!function_exists('validateFile')) {
+    function validateFile($file_name, $rules = [])
+    {
+        $rulesArr = explode('|', $rules);
+
+        if (in_array('required', $rulesArr) && (!isset($_FILES[$file_name]) || empty($_FILES[$file_name]['name']))) {
+            return _error(sprintf(lang('file_required'), $file_name), null, true);
+        }
+
+        if (!in_array('required', $rulesArr) && (empty($_FILES[$file_name]) || empty($_FILES[$file_name]['name']))) {
+            return true;
+        }
+
+        if (count(preg_grep("/^mimes:.*/", $rulesArr))) {
+            $mimeTypesArr = explode(',', explode(':', array_values(preg_grep("/^mimes:.*/", $rulesArr))[0])[1]);
+            if (!in_array(pathinfo($_FILES[$file_name]['name'], PATHINFO_EXTENSION), $mimeTypesArr)) {
+                return _error(sprintf(lang('invalid_file'), $file_name), null, true);
+            }
+        }
+
+        if (count(preg_grep("/^dimensions:.*/", $rulesArr))) {
+            list($f_width, $f_height) = getimagesize($_FILES[$file_name]["tmp_name"]);
+            $result = explode(',', str_replace('dimensions:', '', array_values(preg_grep("/^dimensions:.*/", $rulesArr))[0]));
+            if (count($result) == 2) {
+                $width = null;
+                $height = null;
+
+                if (count(preg_grep("/^width=.*/", $result))) {
+                    $width = (int) str_replace('width=', '', array_values(preg_grep("/^width=.*/", $result))[0]);
+                }
+                if (count(preg_grep("/^height=.*/", $result))) {
+                    $height = (int) str_replace('height=', '', array_values(preg_grep("/^height=.*/", $result))[0]);
+                }
+                if ($width != $f_width || $height != $f_height) {
+                    return _error(sprintf(lang('file_invalid_dimension'), $file_name, $width, $height), null, true);
+                }
+            }
+        }
+
+        if (count(preg_grep("/^max:.*/", $rulesArr))) {
+            $max_size = (float) str_replace('max:', '', array_values(preg_grep("/^max:.*/", $rulesArr))[0]);
+            $file_size = round($_FILES[$file_name]['size'] / 1000, 2);
+
+            if ($file_size > $max_size) {
+                return _error(sprintf(lang('invalid_file'), $file_name), null, true);
+            }
+        }
+
+        return true;
+    }
+}
